@@ -9,13 +9,13 @@ import jakarta.persistence.*;
 @Entity
 public class Game {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
 
     public String title;
     public String description;
 
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({ "game", "author", "rating", "content", "title" })
+    @JsonIgnoreProperties({ "game" })
     public Set<Review> reviews;
 }

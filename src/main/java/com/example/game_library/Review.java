@@ -15,8 +15,8 @@ public class Review {
     public String author;
     public Long rating;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id")
-    @JsonIgnoreProperties({ "reviews", "title", "description" })
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "game_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({ "reviews" })
     public Game game;
 }
