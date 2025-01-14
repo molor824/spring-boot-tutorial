@@ -1,24 +1,15 @@
 <script setup>
-import { defineProps } from "vue";
-
-const { title, description, reviews } = defineProps({
+const { title, description, id } = defineProps({
   title: String,
   description: String,
-  reviews: Array,
+  id: Number,
 });
 </script>
 
 <template>
-  <div class="vertical">
+  <div class="vertical card" @click="$router.push(`/game/${id}`)">
     <h1>{{ title }}</h1>
     <p>{{ description }}</p>
-    <h2>Reviews</h2>
-    <div class="vertical" v-for="review in reviews">
-      <h3>{{ review.title }}</h3>
-      <small>{{ review.author }}</small>
-      <p>{{ review.content }}</p>
-      <span>Rating: {{ review.rating }} / 5</span>
-    </div>
   </div>
 </template>
 
@@ -27,6 +18,17 @@ const { title, description, reviews } = defineProps({
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.card {
+  background-color: #303030;
+  border-radius: 20px;
+  padding: 16px;
+}
+
+.card:hover {
+  background-color: #404040;
+  cursor: pointer;
 }
 
 h1 {
